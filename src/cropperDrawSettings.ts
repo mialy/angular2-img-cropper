@@ -6,4 +6,5 @@ export class CropperDrawSettings {
     public dragIconFillColor: string = 'rgba(255,255,255,1)';
     public cornerFillColor: string = 'rgba(255,255,255,.7)';
     public cornerFillColorDrag: string = 'rgba(255,255,255,.7)';
+    public corderSideLength: number = 0;
 }

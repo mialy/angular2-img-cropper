@@ -16,11 +16,7 @@ export class CornerMarker extends Handle implements ICornerMarker {
     }
 
     public drawCornerBorder(ctx: CanvasRenderingContext2D): void {
-        let sideLength: number = 10;
-        if (this.over || this.drag) {
-            sideLength = 12;
-        }
-
+        let sideLength: number = this.getSideLength();
         let hDirection: number = 1;
         let vDirection: number = 1;
         if (this.horizontalNeighbour.position.x < this.position.x) {
@@ -59,10 +55,7 @@ export class CornerMarker extends Handle implements ICornerMarker {
     }
 
     public drawCornerFill(ctx: CanvasRenderingContext2D): void {
-        let sideLength: number = 10;
-        if (this.over || this.drag) {
-            sideLength = 12;
-        }
+        let sideLength: number = this.getSideLength();
         let hDirection: number = 1;
         let vDirection: number = 1;
         if (this.horizontalNeighbour.position.x < this.position.x) {
@@ -120,4 +113,17 @@ export class CornerMarker extends Handle implements ICornerMarker {
         this.drawCornerBorder(ctx);
     }
 
+    private getSideLength(): number {
+        let sideLength = 10;
+
+        if (this.cropperSettings.cropperDrawSettings.corderSideLength > 0) {
+            sideLength = this.cropperSettings.cropperDrawSettings.corderSideLength;
+        }
+
+        if (this.over || this.drag) {
+            sideLength += 2;
+        }
+
+        return sideLength;
+    }
 }
