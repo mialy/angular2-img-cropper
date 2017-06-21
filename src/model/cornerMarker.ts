@@ -79,7 +79,9 @@ export class CornerMarker extends Handle implements ICornerMarker {
         ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * vDirection));
         ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
         ctx.closePath();
-        ctx.fillStyle = 'rgba(255,255,255,.7)';
+        ctx.fillStyle = this.over || this.drag
+            ? this.cropperSettings.cropperDrawSettings.cornerFillColorDrag
+            : this.cropperSettings.cropperDrawSettings.cornerFillColor;
         ctx.fill();
     }
 
